@@ -1,0 +1,110 @@
+
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>{{ title }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <form [formGroup]="form">
+
+    <ion-item *ngIf="!detalhes">
+      <ion-label stacked>Cliente</ion-label>
+      <ion-input #nome type="text" formControlName="nome"></ion-input>
+    </ion-item>
+
+    <ion-item no-lines *ngIf="!form.controls.nome.valid && (form.controls.nome.dirty || form.controls.nome.touched)">
+      <ion-item no-lines color="danger" text-center [hidden]="!form.controls.nome.errors.required">
+        O campo "Nome do cliente" é obrigatório
+      </ion-item>
+    </ion-item>
+
+    <div *ngIf="detalhes" ion-item>
+      Cliente: {{ venda.nome }}
+    </div>
+
+    <ion-item *ngIf="!detalhes">
+        <ion-label stacked>E-mail</ion-label>
+        <ion-input #email type="text" formControlName="email"></ion-input>
+    </ion-item>
+
+    <div *ngIf="detalhes" ion-item>
+        Email: {{ venda.email }}
+    </div>
+
+    <div padding *ngIf="!detalhes"><button ion-button block icon-start (click)="selCliente()"><ion-icon name="search"></ion-icon>Escolher cliente</button></div>
+
+
+    <ion-item *ngIf="!detalhes">
+      <ion-label stacked>Data da venda</ion-label>
+      <ion-datetime #dateTime displayFormat="DD/MM/YYYY HH:mm" formControlName="datahora"></ion-datetime>
+    </ion-item>
+
+    <ion-item no-lines *ngIf="!form.controls.datahora.valid && (form.controls.datahora.dirty || form.controls.datahora.touched)">
+      <ion-item no-lines color="danger" text-center [hidden]="!form.controls.datahora.errors.required">
+        Selecione a data da venda
+      </ion-item>
+    </ion-item>
+
+    <div *ngIf="detalhes" ion-item>
+        Data: {{ venda.datahora | date: 'dd/MM/yyyy H:mm' }}
+    </div>
+
+    <div padding *ngIf="!detalhes">
+      <ion-row>
+        <ion-col>
+          <button ion-button icon-start block (click)="selProduto()"><ion-icon name="add"></ion-icon>Produto</button>
+        </ion-col>
+        <ion-col>
+          <button ion-button icon-start block (click)="selServico()"><ion-icon name="add"></ion-icon>Serviço</button>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <ion-item text-center><p>Itens</p></ion-item>
+
+    <span *ngIf="!detalhes">
+    <ion-card *ngFor="let i of items">
+      <ion-card-content>
+        <div>{{ i.desc }}</div>
+        <div *ngIf="i.qtd">Preço Unitário: {{ i.preco | currency:"BRL":code:"1.2" }}</div>
+        <div *ngIf="!i.qtd">Preço: {{ i.preco | currency:"BRL":code:"1.2" }}</div>
+        <div *ngIf="i.qtd">Quantidade: {{ i.qtd }}</div>
+      </ion-card-content>
+    </ion-card>
+    </span>
+
+    <span *ngIf="detalhes">
+    <ion-card *ngFor="let i of venda.items">
+        <ion-card-content>
+          <div>{{ i.desc }}</div>
+          <div>Preço Unitário: {{ i.preco | currency:"BRL":code:"1.2" }}</div>
+          <div>Quantidade: {{ i.qtd }}</div>
+        </ion-card-content>
+      </ion-card>
+    </span>
+
+    <ion-item *ngIf="!detalhes">Total: {{ total | currency:"BRL":code:"1.2" }}</ion-item>
+
+    <ion-item *ngIf="detalhes">Total: {{ venda.total | currency:"BRL":code:"1.2" }}</ion-item>
+
+
+    <div padding *ngIf="!detalhes">
+      <button ion-button block type="submit" [disabled]="!form.valid" (click)="onSubmit()">Salvar</button>
+
+      <button ion-button block disabled type="submit" (click)="onSubmit()">Salvar com nota</button>
+
+      <button ion-button block color="danger" (click)="cancelar()">Cancelar venda</button>
+    </div>
+
+    <div padding *ngIf="detalhes">
+        <button ion-button block color="primary" (click)="cancelar()">Voltar</button>
+    </div>
+
+</form>
+
+</ion-content>

@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Status DAS</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+    <ion-item>
+      <ion-label>Ano-calendário:</ion-label>
+      <ion-datetime displayFormat="YYYY" pickerFormat="YYYY" [(ngModel)]="ano" (ionChange)="carregaMeses()"></ion-datetime>
+    </ion-item>
+
+    <ion-card color="light" *ngIf="semRegistro">
+        <ion-card-header text-wrap>
+            Sem registros dos pagamentos de DAS no período
+        </ion-card-header>
+        <ion-list>
+          <button ion-item color="light" (click)="geraMeses()">
+            <ion-icon name="add" item-start></ion-icon>
+            Adicionar agora
+          </button>
+          
+        </ion-list>
+    </ion-card>
+
+    <ion-item *ngFor="let m of meses | async">
+        <ion-label>{{ m.mes }}</ion-label>
+        <ion-checkbox color="primary" [checked]="m.quitado" (ionChange)="checaMes(m.ano,m.id,m.quitado)"></ion-checkbox>
+        <p item-end *ngIf="m.quitado" style="color:#4f8f3b">Quitada</p>
+        <p item-end *ngIf="!m.quitado" style="color:#f53d3d">Em aberto</p>
+    </ion-item>
+
+
+</ion-content>

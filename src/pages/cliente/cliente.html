@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Clientes</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+    <ion-fab right bottom>
+        <button ion-fab mini (click)="novoCliente()"><ion-icon name="add"></ion-icon></button>
+    </ion-fab>
+
+
+    <ion-card *ngFor="let c of cliente | async">
+      <ion-card-header>{{ c.nome }}</ion-card-header>
+      <ion-card-content>
+        <div>Telefone: {{ c.tel }}</div>
+        <div>E-mail: {{ c.email }}</div>
+        <div>Endereço: {{ c.end }}</div>
+        <div>Cidade: {{ c.cidade }}</div>
+        <div>Observações: {{ c.obs }}</div>
+      </ion-card-content>
+        <ion-row no-padding>
+          <ion-col><button ion-button icon-start clear small color="danger" (click)="removeCliente(c.key)"><ion-icon name="trash"></ion-icon><div>Remover</div></button></ion-col>
+          <ion-col><button ion-button icon-start clear small (click)="editCliente(c)"><ion-icon name="create"></ion-icon><div>Alterar</div></button></ion-col>
+        </ion-row>
+
+
+    </ion-card>
+
+
+</ion-content>

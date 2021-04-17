@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Serviços</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+    <ion-fab right bottom>
+        <button ion-fab mini (click)="novoServico()"><ion-icon name="add"></ion-icon></button>
+    </ion-fab>
+
+
+    <ion-card *ngFor="let s of servico | async">
+      <ion-card-header>{{ s.desc }}</ion-card-header>
+      <ion-card-content>
+        <div>Preço: {{ s.preco | currency:"BRL":code:"1.2" }}</div>
+        <div>Obsevações: {{ s.obs }}</div>
+      </ion-card-content>
+        <ion-row no-padding>
+          <ion-col><button ion-button icon-start clear small color="danger" (click)="removeServico(s.key)"><ion-icon name="trash"></ion-icon><div>Remover</div></button></ion-col>
+          <ion-col><button ion-button icon-start clear small (click)="editServico(s)"><ion-icon name="create"></ion-icon><div>Alterar</div></button></ion-col>
+        </ion-row>
+
+
+    </ion-card>
+
+
+</ion-content>

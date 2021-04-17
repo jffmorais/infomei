@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Folha de Pagamentos</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-card>
+    <ion-item>
+      <h2>Antonio da Silva Soares</h2>
+      <p>Ajudante de Produção</p>
+      <p>Contratado em 01/02/2018</p>
+    </ion-item>
+
+    <ion-row no-padding>
+      <ion-col>
+        <button ion-button icon-start clear small color="danger">
+            <ion-icon name="trash"></ion-icon>
+            <div>Excluir</div>
+        </button>
+      </ion-col>
+      <ion-col>
+          <button ion-button icon-start clear small color="primary">
+              <ion-icon name="create"></ion-icon>
+              <div>Alterar</div>
+          </button>
+        </ion-col>
+    </ion-row>
+  </ion-card>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Ano-calendário:</ion-label>
+      <ion-datetime displayFormat="YYYY" pickerFormat="YYYY" [(ngModel)]="ano"></ion-datetime>
+    </ion-item>
+    <ion-item *ngFor="let mes of meses">
+        <div>{{ mes }}</div>
+        <p>STATUS</p>
+      <button ion-button clear item-end icon-only><ion-icon name="more"></ion-icon></button>
+    </ion-item>
+  
+  </ion-list>
+
+
+</ion-content>

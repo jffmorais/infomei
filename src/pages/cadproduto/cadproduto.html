@@ -1,0 +1,61 @@
+
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>{{ title }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <form [formGroup]="form">
+
+    <ion-item>
+      <ion-label stacked>Descrição*</ion-label>
+      <ion-input type="text" formControlName="desc"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!form.controls.desc.valid && (form.controls.desc.dirty || form.controls.desc.touched)" color="danger">
+      <div [hidden]="!form.controls.desc.errors.required">
+        <p>O campo "Descrição" é obrigatório</p>
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Unidade*</ion-label>
+      <ion-input type="text" formControlName="unid"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!form.controls.unid.valid && (form.controls.unid.dirty || form.controls.unid.touched)" color="danger">
+      <div [hidden]="!form.controls.unid.errors.required">
+        <p>O campo "Unidade" é obrigatório</p>
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Custo Unit. de compra/produção*</ion-label>
+      <ion-input type="number" formControlName="custo"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!form.controls.custo.valid && (form.controls.custo.dirty || form.controls.custo.touched)" color="danger">
+      <div [hidden]="!form.controls.custo.errors.required">
+        <p>O campo "Custo Unitário de compra ou produção" é obrigatório</p>
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Preço de venda*</ion-label>
+      <ion-input type="number" formControlName="preco"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!form.controls.preco.valid && (form.controls.preco.dirty || form.controls.preco.touched)" color="danger">
+      <div [hidden]="!form.controls.preco.errors.required">
+        <p>O campo "Preço de venda" é obrigatório</p>
+      </div>
+    </ion-item>
+
+    <div padding>
+      <button ion-button block type="submit" [disabled]="!form.valid" (click)="onSubmit()">Salvar</button>
+    </div>
+
+</form>
+
+</ion-content>

@@ -1,0 +1,41 @@
+page-home {
+    .linha-top{
+        border-top: 1px solid #7d7f7c;
+    }
+}
+
+div.banner{
+    background-color: #4f8f3b;
+    color: #fff;
+    height: 15%;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+
+div.banner p{
+    margin: 0;
+    font-size: 2.3em;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+div.banner label{
+    margin: 0;
+    font-size: 0.8em;
+    float: right;
+}
+
+div.banner div{
+    display: block;
+}
+
+canvas{
+    padding: 0 2% 0 2%;
+}
+
+.grafico{
+    background-color: #4f8f3b;
+}

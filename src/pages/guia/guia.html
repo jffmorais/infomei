@@ -1,0 +1,88 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Guia MEI</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding color="light">
+
+  <ion-card>
+    <ion-list>
+      <button ion-item text-wrap color="primary" (click)="obrigacoes()">Quais são as principais obrigações do MEI?<ion-icon [name]="aba.obri.ic" item-end></ion-icon></button>
+      <ion-card-content *ngIf="aba.obri.st">
+        <p>O MEI deve estar atento a 2 atividades:</p>
+        <ul>
+          <li>Enviar a Declaração Anual;</li>
+          <li>Pagar mensalmente o DAS (Documento de Arrecadação do Simples Nacional)</li>
+        </ul>
+        <p>É de suma importância cumprir com o prazo de entrega e o pagamento desses 2 documentos,
+           visto que atrasos irão gerar multas e juros além de não registrar a contagem do tempo referente
+            aos benefícios da previdência.</p>
+        <p>Independente de ter faturado no mês ou não, o pagamento deve ser feito.</p>
+        <p>Lembrando que o MEI <strong>NÃO</strong> é obrigado a se filiar a nenhuma instituição ou pagar boletos enviados por e-mail,
+           correio ou sms de instituições, sindicatos ou associações.</p>
+      </ion-card-content>
+    </ion-list>
+  </ion-card>
+
+  <ion-card>
+    <ion-list>
+        <button ion-item text-wrap color="primary" (click)="faturamento()">Qual o faturamento anual do MEI?<ion-icon [name]="aba.fat.ic" item-end></ion-icon></button>
+        <ion-card-content *ngIf="aba.fat.st">
+          <p>O MEI deve faturar no máximo até R$ 81.000,00  ao ano, considerando de janeiro a dezembro. Aquele que se cadastrar
+             durante o ano vigente terá seu limite de faturamento proporcional a R$ 6.750,00 por mês, considerando
+              até o dia 31 de dezembro do mesmo ano.</p>
+        </ion-card-content>
+    </ion-list>
+  </ion-card>
+
+  <ion-card>
+    <ion-list>
+        <button ion-item text-wrap color="primary" (click)="nota()">É obrigado emitir Nota Fiscal?<ion-icon [name]="aba.nota.ic" item-end></ion-icon></button>
+        <ion-card-content *ngIf="aba.nota.st">
+          <p>O MEI está isento de emitir nota fiscal para pessoa física, porém ele é obrigado a emitir quando
+             o destinatário do serviço ou produto for outra empresa. Salvo quando o destinatário emitir
+              nota fiscal de entrada.</p>
+          <p>O MEI deverá guardar as notas fiscais de suas vendas e compras durante 5 anos, contabilizando
+             a partir da data de sua emissão.</p>
+        </ion-card-content>
+    </ion-list>
+  </ion-card>
+
+  <ion-card>
+    <ion-list>
+        <button ion-item text-wrap color="primary" (click)="cancelar()">Como cancelar o MEI?<ion-icon [name]="aba.canc.ic" item-end></ion-icon></button>
+        <ion-card-content *ngIf="aba.canc.st">
+          <p>Para efetuar o cancelamento como MEI, basta acessar o site do Portal do Empreendedor e
+             solicitar a baixa do registro e preencher a DASN - SIMEI de Extinção - Encerramento que
+              também se encontra no site citado acima.</p>
+        </ion-card-content>
+    </ion-list>
+  </ion-card>
+
+  <ion-card>
+      <ion-list>
+          <button ion-item text-wrap color="primary" (click)="deixar()">Quando eu deixo de ser MEI?<ion-icon [name]="aba.deixar.ic" item-end></ion-icon></button>
+          <ion-card-content *ngIf="aba.deixar.st">
+            <p>Quando deixa de atender as condições impostas e exigidas na formalização como MEI,
+               como por exemplo, ultrapassar o faturamento anual no valor de R$ 81.000,00. </p>
+          </ion-card-content>
+      </ion-list>
+    </ion-card>
+
+    <ion-card>
+        <ion-list>
+            <button ion-item text-wrap color="primary" (click)="debitos()">Posso cancelar minha inscrição de MEI mesmo possuindo débitos?<ion-icon [name]="aba.debit.ic" item-end></ion-icon></button>
+            <ion-card-content *ngIf="aba.debit.st">
+              <p>Sim. Porém, não significa que as dívidas deixarão de existir mesmo seu nome estando
+                 como pessoa física. A partir do momento que foi dado baixa na empresa, os débitos serão
+                  atrelados automaticamente ao CPF do ex-MEI.</p>
+            </ion-card-content>
+        </ion-list>
+      </ion-card>
+
+</ion-content>

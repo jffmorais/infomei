@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Fluxo</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+  <div text-center ion-item no-lines>Receitas x Despesas dos últimos 5 dias</div>
+
+  <div style="display: block">
+    <canvas #barCanvas></canvas>
+  </div>
+
+  <div ion-item no-lines>
+    <ion-row>
+      <ion-col col-auto><span style="width: 10px; height:20px; display: block; background-color: rgba(0, 204, 122, 0.7);"></span></ion-col>
+      <ion-col>Receitas</ion-col>
+      <ion-col col-auto><span style="width: 10px; height:20px; display: block; background-color: rgba(198, 13, 13, 0.7);"></span></ion-col>
+      <ion-col>Despesas</ion-col>
+    </ion-row>
+  </div>
+
+  <div ion-item></div>
+
+  <div ion-item>
+    <ion-row>
+      <ion-col text-center>Resultados por dia</ion-col>
+    </ion-row>
+  </div>
+  <div ion-item *ngFor="let r of resultados">
+    <ion-row>
+      <ion-col >{{ r.dia }}</ion-col>
+      <ion-col text-right col-auto  [style.background-color]="r.cor">{{ r.res | currency:"BRL":code:"1.2" }}</ion-col>
+    </ion-row>
+  </div>
+
+</ion-content>

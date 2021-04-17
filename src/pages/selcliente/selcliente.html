@@ -1,0 +1,21 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Selecione o cliente</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <ion-list>
+        <button ion-item *ngFor="let c of cliente | async" (click)="seleciona(c)">
+          {{ c.nome }}
+          &nbsp;
+          ({{ c.email }})
+          <ion-icon name="arrow-forward" item-end></ion-icon>
+        </button>
+      </ion-list>
+
+</ion-content>

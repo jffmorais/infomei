@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Produtos</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+    <ion-fab right bottom>
+        <button ion-fab mini (click)="novoProduto()"><ion-icon name="add"></ion-icon></button>
+    </ion-fab>
+
+
+    <ion-card *ngFor="let p of prod | async">
+      <ion-card-header>{{ p.desc }}</ion-card-header>
+      <ion-card-content>
+        <div>Unidade: {{ p.unid }}</div>
+        <div>Custo de compra: {{ p.custo | currency:"BRL":code:"1.2" }}</div>
+        <div>Preço de venda: {{ p.preco | currency:"BRL":code:"1.2" }}</div>
+      </ion-card-content>
+        <ion-row no-padding>
+          <ion-col><button ion-button icon-start clear small color="danger" (click)="removeProduto(p.key)"><ion-icon name="trash"></ion-icon><div>Remover</div></button></ion-col>
+          <ion-col><button ion-button icon-start clear small (click)="editProduto(p)"><ion-icon name="create"></ion-icon><div>Alterar</div></button></ion-col>
+        </ion-row>
+
+
+    </ion-card>
+
+
+</ion-content>

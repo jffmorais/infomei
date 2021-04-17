@@ -1,0 +1,61 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ title }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <form [formGroup]="form">
+
+      <ion-list>
+          <ion-item>
+            <ion-label stacked>Tipo de despesa*</ion-label>
+            <ion-select placeholder="Selecione o tipo" okText="selecionar" cancelText="cancelar" formControlName="tipo">
+              <ion-option *ngFor="let t of tipos" [value]="t">{{ t }}</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item no-lines *ngIf="!form.controls.tipo.valid && (form.controls.tipo.dirty || form.controls.tipo.touched)">
+            <ion-item no-lines color="danger" text-center [hidden]="!form.controls.tipo.errors.required">
+              O campo "Tipo de despesa" é obrigatório
+            </ion-item>
+          </ion-item>
+        </ion-list>
+
+    <ion-item>
+      <ion-label stacked>Descrição*</ion-label>
+      <ion-input type="text" formControlName="desc"></ion-input>
+    </ion-item>
+    <ion-item no-lines *ngIf="!form.controls.desc.valid && (form.controls.desc.dirty || form.controls.desc.touched)">
+      <ion-item no-lines color="danger" text-center [hidden]="!form.controls.desc.errors.required">
+        O campo "Descrição" é obrigatório
+      </ion-item>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Valor total*</ion-label>
+      <ion-input type="number" formControlName="valor"></ion-input>
+    </ion-item>
+    <ion-item no-lines *ngIf="!form.controls.valor.valid && (form.controls.valor.dirty || form.controls.valor.touched)">
+      <ion-item dno-lines color="danger" [hidden]="!form.controls.valor.errors.required">
+        O campo "Valor total" é obrigatório
+      </ion-item>
+    </ion-item>
+
+    <ion-item>
+        <ion-label stacked>Data da venda</ion-label>
+        <ion-datetime #dateTime displayFormat="DD/MM/YYYY HH:mm" formControlName="datahora"></ion-datetime>
+      </ion-item>
+
+
+    <div padding>
+      <button ion-button block type="submit" [disabled]="!form.valid" (click)="onSubmit()">Salvar</button>
+    </div>
+
+</form>
+
+</ion-content>

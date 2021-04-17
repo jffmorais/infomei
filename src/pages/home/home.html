@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-navbar color="primary">
+      <ion-buttons left>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    </ion-buttons>
+    <ion-title>Home</ion-title>
+    <ion-buttons end>
+    <button ion-button (click)="config()">
+      <ion-icon name="settings" ></ion-icon>
+    </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="banner">
+    <div>
+      <p>{{ saldo | currency:"BRL":code:"1.2" }}</p>
+      <label>SALDO</label>
+    </div>
+  </div>
+  <div class="grafico"><canvas #GrafSaldo></canvas></div>
+
+
+  <ion-card>
+    <ion-list>
+      <button ion-item color="primary" (click)="novaVenda()">
+        <ion-icon name="add" item-end></ion-icon>
+        Entradas
+      </button>
+      <ion-item *ngIf="semVendas">Não há registro de vendas no periodo</ion-item>
+      <ion-item *ngFor="let v of arrVendas | slice:0:3; let i=index" style="border-top: solid 1px #4f8f3b">
+        {{ v.nome }}
+        <p>{{ v.datahora | date: 'dd/MM/yyyy H:mm' }}</p>
+        <span item-end>{{ v.total | currency:"BRL":code:"1.2" }}</span>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+  <ion-card>
+    <ion-list>
+      <button ion-item color="danger" (click)="novaDespesa()">
+        <ion-icon name="add"item-end></ion-icon>
+        Saídas
+      </button>
+      <ion-item *ngIf="semDespesas">Não há registro de despesas no periodo</ion-item>
+      <ion-item *ngFor="let d of arrDespesas | slice:0:3; let i=index" style="border-top: solid 1px #f53d3d">
+        {{ d.desc }}
+        <p>{{ d.datahora | date: 'dd/MM/yyyy H:mm' }}</p>
+        <span item-end>{{ d.valor | currency:"BRL":code:"1.2" }}</span>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+</ion-content>

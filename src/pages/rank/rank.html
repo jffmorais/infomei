@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Ranking Mensal</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+    <div ion-item text-center><ion-datetime displayFormat="MMMM/YYYY" pickerFormat="MMMM YYYY" [(ngModel)]="mesAtual" (ionChange)="carregaVendas()"></ion-datetime></div>
+
+    <div ion-item>
+      <ion-row>
+        <ion-col><button ion-button icon-start clear full color="primary"><ion-icon name="people"></ion-icon>Clientes</button></ion-col>
+        <ion-col><button ion-button icon-start clear full color="primary"><ion-icon name="basket"></ion-icon>Produtos</button></ion-col>
+      </ion-row>
+    </div>
+
+    <div ion-item text-center>Clientes mais ativos do mês</div>
+
+    <ion-card *ngIf="semVendas" color="light">
+      <ion-card-content text-center>
+        <p>&nbsp;</p>
+        <h2>Sem registros de vendas no período</h2>
+        <p>&nbsp;</p>
+      </ion-card-content>
+    </ion-card>
+
+    <div ion-item [style.display]="semVendas ? 'none' : 'block'">
+        <canvas #DoughnutCanvas></canvas>
+    </div>
+
+    <div ion-item text-wrap *ngFor="let c of clientesOrd">
+      <ion-row>
+        <ion-col col-auto><span style="width: 10px; height:20px; display: block;" [style.background-color]="c.cor"></span></ion-col>
+        <ion-col>{{ c.nome }}</ion-col>
+        <ion-col col-auto>{{ c.total | currency:"BRL":code:"1.2" }}</ion-col>
+      </ion-row>
+    </div> 
+
+</ion-content>

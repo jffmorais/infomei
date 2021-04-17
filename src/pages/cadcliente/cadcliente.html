@@ -1,0 +1,67 @@
+
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>{{ title }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <form [formGroup]="form">
+
+    <ion-list>
+
+    <ion-item>
+      <ion-label stacked>Nome*</ion-label>
+      <ion-input  type="text" formControlName="nome"></ion-input>
+    </ion-item>
+    <ion-item no-lines *ngIf="!form.controls.nome.valid && (form.controls.nome.dirty || form.controls.nome.touched)">
+      <ion-item no-lines text-center color="danger" [hidden]="!form.controls.nome.errors.required">
+        O campo "Nome" é obrigatório
+      </ion-item>
+      <ion-item no-lines text-center color="danger" [hidden]="!form.controls.nome.errors.maxlength">
+        O nome deve ter no máximo 50 caracteres
+      </ion-item>
+    </ion-item>    
+
+    <ion-item>
+      <ion-label stacked>Telefone</ion-label>
+      <ion-input type="tel" formControlName="tel"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>E-mail*</ion-label>
+      <ion-input type="text" formControlName="email"></ion-input>
+    </ion-item>
+    <ion-item no-lines *ngIf="!form.controls.email.valid && (form.controls.email.dirty || form.controls.email.touched)">
+      <ion-item no-lines text-center color="danger" [hidden]="!form.controls.email.errors.email">
+        O email digitado é inválido
+      </ion-item>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Endereço, número, bairro</ion-label>
+      <ion-input type="text" formControlName="end"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Cidade</ion-label>
+      <ion-input type="text" formControlName="cidade"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Observações</ion-label>
+      <ion-textarea formControlName="obs"></ion-textarea>
+    </ion-item>
+
+    <div padding>
+      <button ion-button block type="submit" [disabled]="!form.valid" (click)="onSubmit()">Salvar</button>
+    </div>
+  </ion-list>
+
+</form>
+
+</ion-content>

@@ -1,0 +1,40 @@
+<ion-header>
+
+</ion-header>
+
+
+<ion-content padding style="background-image: url('../../assets/imgs/fundo.png')">
+
+    <ion-grid style="height: 100%">
+        <ion-row justify-content-center align-items-center style="height: 100%">
+            <form #form="ngForm" novalidate>
+    
+                <img src="../../assets/imgs/logo_infomei2.png">
+            
+                <ion-label stacked>E-mail</ion-label>
+                <ion-input type="text" style="background-color: #FFFFFF;" name="email" [(ngModel)]="user.email" #email="ngModel" required></ion-input>
+                <div *ngIf="email.errors && (email.dirty || email.touched)" class="text-danger">
+                  O campo E-mail é obrigatório
+                </div>
+            
+                <ion-label stacked>Senha</ion-label>
+                <ion-input style="background-color: #FFFFFF;" type="password" name="password" [(ngModel)]="user.password" #password="ngModel" required></ion-input>
+                <div *ngIf="password.errors && (password.dirty || password.touched)" class="text-danger">
+                  O campo Senha é obrigatório
+                </div>
+                 
+                <button ion-button full color="primary" [disabled]="!form.form.valid" (click)="signIn()">
+                  Entrar
+                </button>
+                
+                <button ion-button full color="light" (click)="createAccount()">
+                  Cadastrar
+                </button>    
+            
+              </form>
+        </ion-row>
+    </ion-grid>
+
+
+
+</ion-content>

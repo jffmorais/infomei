@@ -1,0 +1,47 @@
+
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>{{ title }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <form [formGroup]="form">
+
+    <ion-item>
+      <ion-label stacked>Descrição*</ion-label>
+      <ion-input type="text" formControlName="desc"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!form.controls.desc.valid && (form.controls.desc.dirty || form.controls.desc.touched)" color="danger">
+      <div [hidden]="!form.controls.desc.errors.required">
+        <ion-icon name="alert"></ion-icon>
+        O campo "Descrição" é obrigatório
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Preço*</ion-label>
+      <ion-input type="number" formControlName="preco"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!form.controls.preco.valid && (form.controls.preco.dirty || form.controls.preco.touched)" color="danger">
+      <div [hidden]="!form.controls.preco.errors.required">
+        O campo "Preço" é obrigatório
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Observações</ion-label>
+      <ion-textarea formControlName="obs"></ion-textarea>
+    </ion-item>
+
+    <div padding>
+      <button ion-button block type="submit" [disabled]="!form.valid" (click)="onSubmit()">Salvar</button>
+    </div>
+
+</form>
+
+</ion-content>
